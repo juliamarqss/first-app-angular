@@ -62,9 +62,11 @@ export class DetailsComponent {
 
   constructor() {
     // criando a variável que pega o id
-    const housingLocationId = Number(this.route.snapshot.params['id']);
-    // pegando as informações da propriedade com o id 
-    this.housingLocation = this.housingService.getHousingLocationsById(housingLocationId);
+    const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
+    
+    this.housingService.getHousingLocationsById(housingLocationId).then((housingLocation) => {
+      this.housingLocation = housingLocation;
+    })
   }
 
   submitApplication() {
